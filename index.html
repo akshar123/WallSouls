@@ -4,164 +4,213 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wall Souls - Art Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Embedded CSS for styling */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+      background-color: #f1f5f9;
       color: #333;
+      overscroll-behavior: none;
+      opacity: 1;
     }
-    /* Navigation Bar */
     nav {
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       position: fixed;
+      top: 0;
       width: 100%;
-      z-index: 10;
+      z-index: 1000;
+      opacity: 1;
     }
     nav .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 15px 20px;
+      padding: 6px 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    nav .logo {
-      font-family: Georgia, serif;
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      text-decoration: none;
+    nav .logo-placeholder {
+      width: 100px;
+      height: 40px;
+      border: 2px dashed #666;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #666;
+      opacity: 1;
+    }
+    @media (max-width: 600px) {
+      nav .logo-placeholder {
+        width: 80px;
+        height: 32px;
+        font-size: 12px;
+      }
+    }
+    nav .nav-links {
+      display: flex;
+      align-items: center;
     }
     nav .nav-links a {
-      margin-left: 20px;
+      margin-left: 10px;
       color: #666;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s ease;
+      opacity: 1;
     }
     nav .nav-links a:hover {
-      color: #333;
+      color: #2563eb;
     }
-    /* Hero Section */
+    @media (max-width: 600px) {
+      nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 6px;
+      }
+      nav .nav-links a {
+        margin: 3px 0;
+        font-size: 12px;
+      }
+    }
     #home {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1513366208864-87536b8bd7b7') center/cover no-repeat fixed;
+      height: 80vh;
+      background: rgba(0, 0, 0, 0.7) url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600') center/cover no-repeat scroll;
       display: flex;
       align-items: center;
       position: relative;
-    }
-    #home::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-      z-index: 1;
+      opacity: 1;
     }
     #home .content {
       position: relative;
       z-index: 2;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
       color: #fff;
+      opacity: 1;
     }
     #home h1 {
-      font-family: Georgia, serif;
-      font-size: 48px;
-      margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(to right, #fff, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+      opacity: 1;
     }
-    #home .typing {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid white;
-      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: white; }
+    @media (min-width: 768px) {
+      #home h1 {
+        font-size: 40px;
+      }
     }
     #home p {
-      font-size: 20px;
-      margin-bottom: 30px;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      opacity: 1;
     }
     #home .cta {
       display: inline-block;
-      padding: 12px 24px;
-      background-color: #2563eb;
+      padding: 6px 12px;
+      background: linear-gradient(to right, #2563eb, #1e40af);
       color: #fff;
       text-decoration: none;
-      border-radius: 25px;
-      margin: 0 10px;
+      border-radius: 8px;
+      margin: 0 6px;
+      font-size: 12px;
+      font-weight: 400;
+      transition: transform 0.2s ease, background 0.2s ease;
+      opacity: 1;
     }
     #home .cta:hover {
-      background-color: #1d4ed8;
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1e40af, #2563eb);
     }
     #home .cta.secondary {
-      background-color: transparent;
-      border: 2px solid #fff;
+      background: transparent;
+      border: 1px solid #fff;
     }
     #home .cta.secondary:hover {
-      background-color: #fff;
+      background: #fff;
       color: #2563eb;
     }
-    /* Gallery Section */
     #gallery {
-      padding: 80px 20px;
+      padding: 50px 10px;
       background-color: #fff;
+      opacity: 1;
     }
     #gallery .container {
       max-width: 1200px;
       margin: 0 auto;
     }
     #gallery h2 {
-      font-family: Georgia, serif;
-      font-size: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(to right, #2563eb, #1e40af);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
+      opacity: 1;
     }
     #gallery .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
+      min-width: 0;
     }
     .art-card {
       background-color: #f9fafb;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 1;
+    }
+    .art-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
     .art-card img {
       width: 100%;
-      height: 250px;
+      height: 160px;
       object-fit: cover;
     }
     .art-card .info {
-      padding: 15px;
+      padding: 6px;
       text-align: center;
     }
     .art-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      opacity: 1;
     }
     .art-card p {
       color: #666;
-      font-size: 16px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     .art-card .overlay {
       position: absolute;
@@ -174,143 +223,191 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.2s ease;
+      z-index: 1;
     }
     .art-card:hover .overlay {
       opacity: 1;
     }
     .art-card .overlay a {
-      padding: 10px 20px;
+      padding: 5px 10px;
       background-color: #fff;
       color: #333;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
-    /* Payment Options Section */
     #payment {
-      padding: 80px 20px;
-      background-color: #f3f4f6;
+      padding: 50px 10px;
+      background-color: #f1f5f9;
+      opacity: 1;
     }
     #payment .container {
       max-width: 1200px;
       margin: 0 auto;
     }
     #payment h2 {
-      font-family: Georgia, serif;
-      font-size: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(to right, #2563eb, #1e40af);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
+      opacity: 1;
     }
     #payment .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
     }
-    #payment .payment-card {
+    .payment-card {
       background-color: #fff;
-      padding: 20px;
+      padding: 10px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 1;
     }
-    #payment .payment-card img {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 15px;
+    .payment-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
-    #payment .payment-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
+    .payment-card svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 6px;
     }
-    #payment .payment-card p {
+    .payment-card h3 {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      opacity: 1;
+    }
+    .payment-card p {
       color: #666;
-      font-size: 16px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     #payment .cta {
       display: inline-block;
-      padding: 12px 24px;
-      background-color: #2563eb;
+      padding: 6px 12px;
+      background: linear-gradient(to right, #2563eb, #1e40af);
       color: #fff;
       text-decoration: none;
-      border-radius: 25px;
-      margin-top: 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 400;
+      transition: transform 0.2s ease, background 0.2s ease;
+      opacity: 1;
     }
     #payment .cta:hover {
-      background-color: #1d4ed8;
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1e40af, #2563eb);
     }
-    /* Custom Enquiry Section */
     #enquiry {
-      padding: 80px 20px;
+      padding: 50px 10px;
       background-color: #fff;
+      opacity: 1;
     }
     #enquiry .container {
       max-width: 1200px;
       margin: 0 auto;
     }
     #enquiry h2 {
-      font-family: Georgia, serif;
-      font-size: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(to right, #2563eb, #1e40af);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
+      opacity: 1;
     }
     #enquiry form {
-      max-width: 500px;
+      max-width: 360px;
       margin: 0 auto;
     }
     #enquiry .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     #enquiry label {
       display: block;
-      font-size: 16px;
+      font-size: 10px;
+      font-weight: 400;
       color: #333;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
+      opacity: 1;
     }
     #enquiry input,
     #enquiry textarea {
       width: 100%;
-      padding: 10px;
+      padding: 4px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     #enquiry textarea {
-      height: 150px;
+      height: 80px;
       resize: vertical;
     }
     #enquiry button {
       display: block;
       width: 100%;
-      padding: 12px;
-      background-color: #2563eb;
+      padding: 6px;
+      background: linear-gradient(to right, #2563eb, #1e40af);
       color: #fff;
       border: none;
-      border-radius: 25px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 400;
       cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      opacity: 1;
     }
     #enquiry button:hover {
-      background-color: #1d4ed8;
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1e40af, #2563eb);
     }
-    /* Contact Us Section */
     #contact {
-      padding: 80px 20px;
-      background-color: #f3f4f6;
+      padding: 50px 10px;
+      background-color: #f1f5f9;
+      opacity: 1;
     }
     #contact .container {
       max-width: 1200px;
       margin: 0 auto;
     }
     #contact h2 {
-      font-family: Georgia, serif;
-      font-size: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(to right, #2563eb, #1e40af);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
+      opacity: 1;
     }
     #contact .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 8px;
     }
     @media (min-width: 768px) {
       #contact .grid {
@@ -318,96 +415,112 @@
       }
     }
     #contact form {
-      max-width: 500px;
+      max-width: 360px;
       margin: 0 auto;
     }
     #contact .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     #contact label {
       display: block;
-      font-size: 16px;
+      font-size: 10px;
+      font-weight: 400;
       color: #333;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
+      opacity: 1;
     }
     #contact input,
     #contact textarea {
       width: 100%;
-      padding: 10px;
+      padding: 4px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     #contact textarea {
-      height: 150px;
+      height: 80px;
       resize: vertical;
     }
     #contact button {
       display: block;
       width: 100%;
-      padding: 12px;
-      background-color: #2563eb;
+      padding: 6px;
+      background: linear-gradient(to right, #2563eb, #1e40af);
       color: #fff;
       border: none;
-      border-radius: 25px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 400;
       cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      opacity: 1;
     }
     #contact button:hover {
-      background-color: #1d4ed8;
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1e40af, #2563eb);
     }
     #contact iframe {
       width: 100%;
-      height: 400px;
+      height: 200px;
       border: 0;
       max-width: 100%;
+      opacity: 1;
     }
-    /* Footer */
     footer {
       background-color: #1f2937;
       color: #fff;
-      padding: 40px 20px;
+      padding: 15px 10px;
       text-align: center;
+      opacity: 1;
     }
     footer p {
-      margin-bottom: 15px;
-      font-size: 16px;
+      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     footer .social-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 15px;
+      gap: 8px;
+      margin-bottom: 6px;
     }
     footer .social-links a {
       color: #9ca3af;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 1;
     }
     footer .social-links a:hover {
       color: #fff;
     }
-    /* Animations */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition: opacity 0.3s ease-out;
+      will-change: opacity;
     }
     .fade-in.visible {
       opacity: 1;
-      transform: translateY(0);
     }
-    /* Smooth Scrolling */
+    .fade-in {
+      animation: fadeInFallback 0.1s forwards 0.1s;
+    }
+    @keyframes fadeInFallback {
+      to { opacity: 1; }
+    }
     html {
       scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav>
     <div class="container">
-      <a href="#home" class="logo">Wall Souls</a>
+      <!-- Replace with your logo image later -->
+      <div class="logo-placeholder">Logo</div>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#gallery">Gallery</a>
@@ -417,11 +530,9 @@
       </div>
     </div>
   </nav>
-
-  <!-- Hero Section -->
   <section id="home">
     <div class="content fade-in">
-      <h1><span class="typing">Art That Inspires Your Soul</span></h1>
+      <h1>Art That Inspires Your Soul</h1>
       <p>Discover exclusive artworks at Wall Souls, Nagpur</p>
       <div>
         <a href="#gallery" class="cta">Explore Gallery</a>
@@ -429,15 +540,12 @@
       </div>
     </div>
   </section>
-
-  <!-- Gallery Section -->
   <section id="gallery">
     <div class="container">
       <h2 class="fade-in">Our Art Collection</h2>
       <div class="grid">
-        <!-- Art Card 1 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1549887534-1541e9326642" alt="Abstract Waves" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?w=400" alt="Abstract Waves" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Abstract Waves</h3>
             <p>₹20,000</p>
@@ -446,9 +554,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 2 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1574169207511-4f3e31b69614" alt="Vivid Colors" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1574169207511-4f3e31b69614?w=400" alt="Vivid Colors" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Vivid Colors</h3>
             <p>₹24,000</p>
@@ -457,9 +564,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 3 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119" alt="Serene Landscape" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400" alt="Serene Landscape" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Serene Landscape</h3>
             <p>₹16,000</p>
@@ -468,9 +574,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 4 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809" alt="Color Splash" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400" alt="Color Splash" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Color Splash</h3>
             <p>₹22,000</p>
@@ -479,9 +584,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 5 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1549492423-4003e3eb1399" alt="Soulful Portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1549492423-4003e3eb1399?w=400" alt="Soulful Portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Soulful Portrait</h3>
             <p>₹25,000</p>
@@ -490,9 +594,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 6 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04" alt="Nature's Call" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400" alt="Nature's Call" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Nature's Call</h3>
             <p>₹19,000</p>
@@ -501,9 +604,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 7 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062" alt="Ethereal Flow" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?w=400" alt="Ethereal Flow" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Ethereal Flow</h3>
             <p>₹21,000</p>
@@ -512,9 +614,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 8 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Urban Vibes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" alt="Urban Vibes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Urban Vibes</h3>
             <p>₹23,000</p>
@@ -523,9 +624,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 9 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Starry Night" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400" alt="Starry Night" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Starry Night</h3>
             <p>₹24,000</p>
@@ -534,9 +634,8 @@
             </div>
           </div>
         </div>
-        <!-- Art Card 10 -->
         <div class="art-card fade-in">
-          <img src="https://images.unsplash.com/photo-1516684732162-798f164e46a9" alt="Mountain Echoes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <img src="https://images.unsplash.com/photo-1516684732162-798f164e46a9?w=400" alt="Mountain Echoes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
           <div class="info">
             <h3>Mountain Echoes</h3>
             <p>₹22,000</p>
@@ -548,24 +647,28 @@
       </div>
     </div>
   </section>
-
-  <!-- Payment Options Section -->
   <section id="payment">
     <div class="container">
       <h2 class="fade-in">Payment Options</h2>
       <div class="grid">
         <div class="payment-card fade-in">
-          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/paypal-icon.png" alt="PayPal" width="64" height="64">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.844 7.417c-.258-1.716-1.789-2.975-3.559-2.975H7.506c-.258 0-.516.086-.688.258L4.213 7.332c-.258.258-.344.602-.258.946v.086c0 .258.086.516.258.688l1.375 1.375c.258.258.602.344.946.258h.086c.258 0 .516-.086.688-.258l1.375-1.375h8.255c.774 0 1.375.602 1.375 1.375v7.332c0 .774-.602 1.375-1.375 1.375H6.987c-.774 0-1.375-.602-1.375-1.375v-7.332c0-.258-.086-.516-.258-.688l-1.375-1.375c-.258-.258-.602-.344-.946-.258h-.086c-.258 0-.516.086-.688.258L.884 7.332c-.258.258-.344.602-.258.946v12.903c0 .774.602 1.375 1.375 1.375h17.879c.774 0 1.375-.602 1.375-1.375V8.278c0-.258-.086-.516-.258-.688l-1.375-1.375c-.258-.258-.602-.344-.946-.258h-.086z" fill="#003087"/>
+          </svg>
           <h3>PayPal</h3>
           <p>Secure payments with PayPal.</p>
         </div>
         <div class="payment-card fade-in">
-          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/stripe-icon.png" alt="Stripe" width="64" height="64">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="#6772E5"/>
+          </svg>
           <h3>Stripe</h3>
           <p>Pay with credit/debit cards.</p>
         </div>
         <div class="payment-card fade-in">
-          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/upi-icon.png" alt="UPI" width="64" height="64">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h3l-4 4-4-4h3V7z" fill="#4CAF50"/>
+          </svg>
           <h3>UPI</h3>
           <p>Fast payments via UPI.</p>
         </div>
@@ -575,8 +678,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Custom Enquiry Section -->
   <section id="enquiry">
     <div class="container">
       <h2 class="fade-in">Custom Art Enquiry</h2>
@@ -597,8 +698,6 @@
       </form>
     </div>
   </section>
-
-  <!-- Contact Us Section -->
   <section id="contact">
     <div class="container">
       <h2 class="fade-in">Contact Us</h2>
@@ -619,13 +718,11 @@
           <button type="submit">Send Message</button>
         </form>
         <div class="fade-in">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.314133108315!2d79.08105231484776!3d21.14663398593349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a6a4a4a4a5%3A0x4e6f7b7b7b7b7b7b!2sNagpur%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" width="100%" height="400" style="border:0; max-width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.314133108315!2d79.08105231484776!3d21.14663398593349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a6a4a4a4a5%3A0x4e6f7b7b7b7b7b7b!2sNagpur%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" width="100%" height="200" style="border:0; max-width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Proudly serving Nagpur, Maharashtra</p>
@@ -638,10 +735,12 @@
       <p>© 2025 Wall Souls. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- Embedded JavaScript for Animations -->
   <script>
-    // Smooth scrolling for nav links
+    (function() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      }
+    })();
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -650,27 +749,16 @@
         });
       });
     });
-
-    // Fade-in animation on scroll
     const fadeIns = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
-
+    }, { threshold: 0.5 });
     fadeIns.forEach(element => observer.observe(element));
-
-    // Typing animation restart
-    const typingElement = document.querySelector('.typing');
-    typingElement.addEventListener('animationend', () => {
-      typingElement.style.animation = 'none';
-      setTimeout(() => {
-        typingElement.style.animation = 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite';
-      }, 1000);
-    });
   </script>
 </body>
 </html>
