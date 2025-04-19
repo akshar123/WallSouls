@@ -1,641 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wallSouls | Art Gallery</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Base Styles with Modern Aesthetics */
-        :root {
-            --primary: #e55039;
-            --secondary: #0a3d62;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --accent: #1dd1a1;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--dark);
-            background-color: var(--light);
-            overflow-x: hidden;
-        }
-        
-        /* Modern smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Artistic background pattern */
-        body:before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
-            background-image: 
-                radial-gradient(var(--primary) 1px, transparent 1px),
-                radial-gradient(var(--secondary) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        /* Header with modern glassmorphism */
-        header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 15px 20px;
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.95);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        .logo span {
-            color: var(--primary);
-            font-style: italic;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-        
-        /* Hero section with artistic background */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(229, 80, 57, 0.1) 0%, rgba(10, 61, 98, 0.1) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero:before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
-            animation: rotate 30s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 60px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            color: var(--dark);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            color: var(--dark);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.8s;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(229, 80, 57, 0.4);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 1.1s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(229, 80, 57, 0.6);
-        }
-        
-        /* Modern section styling */
-        .section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 40px;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* Artwork Grid with Scroll Animations */
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
-        .art-item {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .art-item.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .art-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        
-        .art-img {
-            height: 300px;
-            background-color: #f1f1f1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 16px;
-            overflow: hidden;
-        }
-        
-        .art-info {
-            padding: 25px;
-        }
-        
-        .art-info h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-        
-        .price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-top: 15px;
-        }
-        
-        /* Contact form styling */
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: border 0.3s ease;
-            font-family: inherit;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        .contact-form button {
-            padding: 14px 30px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(229, 80, 57, 0.4);
-            font-family: inherit;
-        }
-        
-        .contact-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(229, 80, 57, 0.6);
-        }
-        
-        /* Modern footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 80px 20px 30px;
-            position: relative;
-        }
-        
-        footer:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary));
-            background-size: 300% 100%;
-            animation: gradient 5s ease infinite;
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 50px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 25px;
-            font-size: 22px;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-column a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-column a:hover {
-            color: var(--primary);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
-            font-size: 14px;
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 40px;
-            }
-            
-            .section {
-                padding: 60px 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wall Souls - Art Gallery</title>
+  <style>
+    /* Embedded CSS for styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #333;
+    }
+    /* Navigation Bar */
+    nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+    }
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+    nav .nav-links a {
+      margin-left: 20px;
+      color: #666;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    nav .nav-links a:hover {
+      color: #333;
+    }
+    /* Hero Section */
+    #home {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1513366208864-87536b8bd7b7') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+      z-index: 1;
+    }
+    #home .content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    #home h1 {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    #home .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: white; }
+    }
+    #home p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    #home .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      margin: 0 10px;
+    }
+    #home .cta:hover {
+      background-color: #1d4ed8;
+    }
+    #home .cta.secondary {
+      background-color: transparent;
+      border: 2px solid #fff;
+    }
+    #home .cta.secondary:hover {
+      background-color: #fff;
+      color: #2563eb;
+    }
+    /* Gallery Section */
+    #gallery {
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+    #gallery .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #gallery h2 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #gallery .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .art-card {
+      background-color: #f9fafb;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .art-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .art-card .info {
+      padding: 15px;
+      text-align: center;
+    }
+    .art-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .art-card p {
+      color: #666;
+      font-size: 16px;
+    }
+    .art-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .art-card:hover .overlay {
+      opacity: 1;
+    }
+    .art-card .overlay a {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #333;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    /* Payment Options Section */
+    #payment {
+      padding: 80px 20px;
+      background-color: #f3f4f6;
+    }
+    #payment .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #payment h2 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #payment .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    #payment .payment-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    #payment .payment-card img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 15px;
+    }
+    #payment .payment-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    #payment .payment-card p {
+      color: #666;
+      font-size: 16px;
+    }
+    #payment .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      margin-top: 30px;
+    }
+    #payment .cta:hover {
+      background-color: #1d4ed8;
+    }
+    /* Custom Enquiry Section */
+    #enquiry {
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+    #enquiry .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #enquiry h2 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #enquiry form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #enquiry .form-group {
+      margin-bottom: 20px;
+    }
+    #enquiry label {
+      display: block;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    #enquiry input,
+    #enquiry textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    #enquiry textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    #enquiry button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #enquiry button:hover {
+      background-color: #1d4ed8;
+    }
+    /* Contact Us Section */
+    #contact {
+      padding: 80px 20px;
+      background-color: #f3f4f6;
+    }
+    #contact .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #contact h2 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #contact .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      #contact .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    #contact form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #contact .form-group {
+      margin-bottom: 20px;
+    }
+    #contact label {
+      display: block;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    #contact textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    #contact button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #contact button:hover {
+      background-color: #1d4ed8;
+    }
+    #contact iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      max-width: 100%;
+    }
+    /* Footer */
+    footer {
+      background-color: #1f2937;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    footer p {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    footer .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    footer .social-links a {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    footer .social-links a:hover {
+      color: #fff;
+    }
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">wall<span>Souls</span></div>
-            <ul class="nav-links">
-                <li><a href="#artworks">Artworks</a></li>
-                <li><a href="#artists">Artists</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#enquiry">Custom Enquiry</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="container">
+      <a href="#home" class="logo">Wall Souls</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#payment">Payment</a>
+        <a href="#enquiry">Custom Enquiry</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Discover Original Art</h1>
-            <p>Explore thousands of artworks from emerging and established artists around the world.</p>
-            <a href="#artworks" class="btn">Explore Now</a>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="content fade-in">
+      <h1><span class="typing">Art That Inspires Your Soul</span></h1>
+      <p>Discover exclusive artworks at Wall Souls, Nagpur</p>
+      <div>
+        <a href="#gallery" class="cta">Explore Gallery</a>
+        <a href="#enquiry" class="cta secondary">Custom Art</a>
+      </div>
+    </div>
+  </section>
 
-    <section id="artworks" class="section">
-        <div class="section-title">
-            <h2>Featured Artworks</h2>
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="fade-in">Our Art Collection</h2>
+      <div class="grid">
+        <!-- Art Card 1 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1549887534-1541e9326642" alt="Abstract Waves" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Abstract Waves</h3>
+            <p>₹20,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
         </div>
-        <div class="art-grid">
-            <div class="art-item">
-                <div class="art-img">Image Placeholder</div>
-                <div class="art-info">
-                    <h3>Abstract Harmony</h3>
-                    <p>by Sarah Johnson</p>
-                    <div class="price">$1,250</div>
-                </div>
+        <!-- Art Card 2 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1574169207511-4f3e31b69614" alt="Vivid Colors" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Vivid Colors</h3>
+            <p>₹24,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
             </div>
-            
-            <div class="art-item">
-                <div class="art-img">Image Placeholder</div>
-                <div class="art-info">
-                    <h3>Forest Dreams</h3>
-                    <p>by Michael Chen</p>
-                    <div class="price">$950</div>
-                </div>
-            </div>
-            
-            <div class="art-item">
-                <div class="art-img">Image Placeholder</div>
-                <div class="art-info">
-                    <h3>Essence of Form</h3>
-                    <p>by Elena Petrova</p>
-                    <div class="price">$2,800</div>
-                </div>
-            </div>
-            
-            <div class="art-item">
-                <div class="art-img">Image Placeholder</div>
-                <div class="art-info">
-                    <h3>Inner Light</h3>
-                    <p>by James Wilson</p>
-                    <div class="price">$1,500</div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+        <!-- Art Card 3 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119" alt="Serene Landscape" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Serene Landscape</h3>
+            <p>₹16,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 4 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809" alt="Color Splash" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Color Splash</h3>
+            <p>₹22,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 5 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1549492423-4003e3eb1399" alt="Soulful Portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Soulful Portrait</h3>
+            <p>₹25,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 6 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04" alt="Nature's Call" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Nature's Call</h3>
+            <p>₹19,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 7 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062" alt="Ethereal Flow" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Ethereal Flow</h3>
+            <p>₹21,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 8 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Urban Vibes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Urban Vibes</h3>
+            <p>₹23,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 9 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Starry Night" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Starry Night</h3>
+            <p>₹24,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+        <!-- Art Card 10 -->
+        <div class="art-card fade-in">
+          <img src="https://images.unsplash.com/photo-1516684732162-798f164e46a9" alt="Mountain Echoes" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250?text=Image+Not+Found'">
+          <div class="info">
+            <h3>Mountain Echoes</h3>
+            <p>₹22,000</p>
+            <div class="overlay">
+              <a href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="artists" class="section">
-        <div class="section-title">
-            <h2>Featured Artists</h2>
+  <!-- Payment Options Section -->
+  <section id="payment">
+    <div class="container">
+      <h2 class="fade-in">Payment Options</h2>
+      <div class="grid">
+        <div class="payment-card fade-in">
+          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/paypal-icon.png" alt="PayPal" width="64" height="64">
+          <h3>PayPal</h3>
+          <p>Secure payments with PayPal.</p>
         </div>
-        <div class="art-grid">
-            <div class="art-item">
-                <div class="art-img">Artist Photo</div>
-                <div class="art-info">
-                    <h3>Sarah Johnson</h3>
-                    <p>Abstract Art</p>
-                </div>
-            </div>
-            
-            <div class="art-item">
-                <div class="art-img">Artist Photo</div>
-                <div class="art-info">
-                    <h3>Michael Chen</h3>
-                    <p>Nature & Landscapes</p>
-                </div>
-            </div>
-            
-            <div class="art-item">
-                <div class="art-img">Artist Photo</div>
-                <div class="art-info">
-                    <h3>Elena Petrova</h3>
-                    <p>Sculpture</p>
-                </div>
-            </div>
+        <div class="payment-card fade-in">
+          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/stripe-icon.png" alt="Stripe" width="64" height="64">
+          <h3>Stripe</h3>
+          <p>Pay with credit/debit cards.</p>
         </div>
-    </section>
+        <div class="payment-card fade-in">
+          <img src="https://raw.githubusercontent.com/grok-xai/static-assets/main/upi-icon.png" alt="UPI" width="64" height="64">
+          <h3>UPI</h3>
+          <p>Fast payments via UPI.</p>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <a href="#" class="cta fade-in">Proceed to Checkout</a>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="section">
-        <div class="section-title">
-            <h2>Contact Us</h2>
+  <!-- Custom Enquiry Section -->
+  <section id="enquiry">
+    <div class="container">
+      <h2 class="fade-in">Custom Art Enquiry</h2>
+      <form action="https://formspree.io/f/your-formspree-id" method="POST" class="fade-in">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
         </div>
-        <div class="contact-form">
-            <input type="text" placeholder="Your Name">
-            <input type="email" placeholder="Your Email">
-            <textarea placeholder="Your Message" rows="5"></textarea>
-            <button type="submit">Send Message</button>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
         </div>
-    </section>
-    
-    <section id="enquiry" class="section">
-        <div class="section-title">
-            <h2>Custom Enquiry</h2>
+        <div class="form-group">
+          <label for="details">Art Details</label>
+          <textarea id="details" name="details" required></textarea>
         </div>
-        <div class="contact-form">
-            <input type="text" placeholder="Your Name">
-            <input type="email" placeholder="Your Email">
-            <input type="text" placeholder="Artwork Type">
-            <textarea placeholder="Describe your custom art requirements" rows="5"></textarea>
-            <button type="submit">Submit Enquiry</button>
-        </div>
-    </section>
+        <button type="submit">Submit Enquiry</button>
+      </form>
+    </div>
+  </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>About Us</h3>
-                <p>wallSouls is a premier online art gallery connecting artists with art lovers worldwide.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#artworks">Artworks</a></li>
-                    <li><a href="#artists">Artists</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#enquiry">Custom Enquiry</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Payment Options</h3>
-                <p>We accept:</p>
-                <div class="payment-icons">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-amex"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Art Street, Creative City</p>
-                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                <p><i class="fas fa-envelope"></i> info@wallsouls.com</p>
-            </div>
+  <!-- Contact Us Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="fade-in">Contact Us</h2>
+      <div class="grid">
+        <form action="https://formspree.io/f/your-formspree-id" method="POST" class="fade-in">
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+        <div class="fade-in">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.314133108315!2d79.08105231484776!3d21.14663398593349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a6a4a4a4a5%3A0x4e6f7b7b7b7b7b7b!2sNagpur%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" width="100%" height="400" style="border:0; max-width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="copyright">
-            &copy; 2025 wallSouls. All Rights Reserved.
-        </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- Simple scroll animation script -->
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            // Fade in elements when scrolled into view
-            const artItems = document.querySelectorAll('.art-item');
-            artItems.forEach(item => {
-                const itemTop = item.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (itemTop < windowHeight - 100) {
-                    item.classList.add('fade-in');
-                }
-            });
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Proudly serving Nagpur, Maharashtra</p>
+      <p>Follow us on social media:</p>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+      <p>© 2025 Wall Souls. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Embedded JavaScript for Animations -->
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
-    </script>
+      });
+    });
+
+    // Fade-in animation on scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Typing animation restart
+    const typingElement = document.querySelector('.typing');
+    typingElement.addEventListener('animationend', () => {
+      typingElement.style.animation = 'none';
+      setTimeout(() => {
+        typingElement.style.animation = 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite';
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
